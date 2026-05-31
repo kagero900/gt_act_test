@@ -1,0 +1,26 @@
+﻿name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Say hello
+        run: echo "Hello, automation!"
+
+      - name: Create artifact with date
+        run: |
+          echo "Build date: $(date)" > build-info.txt
+          echo "Triggered by: ${{ github.actor }}" >> build-info.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-info
+          path: build-info.txt
