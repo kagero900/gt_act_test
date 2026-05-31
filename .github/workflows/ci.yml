@@ -21,7 +21,7 @@ jobs:
           
       - name: Intentional failure - missing dependency
         run: |
-          curl -s https://api.github.com/repos/kagero900/gt_act_test/actions/runs | jq '.'
+          curl -s https://api.github.com/repos/kagero900/gt_act_test/actions/runs | jq '.workflow_runs[0].display_title'
           
       - name: Upload artifact
         uses: actions/upload-artifact@v4
