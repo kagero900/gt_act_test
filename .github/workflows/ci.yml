@@ -16,7 +16,7 @@ jobs:
 
       - name: Create artifact with date
         run: |
-          echo "Build date: $(date)" > build-info.txt
+          echo "Build date: $(date +"%Y-%m-%d %H:%M:%S")" > build-info.txt
           echo "Triggered by: ${{ github.actor }}" >> build-info.txt
 
       - name: Upload artifact
