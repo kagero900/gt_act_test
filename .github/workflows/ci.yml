@@ -16,9 +16,13 @@ jobs:
 
       - name: Create artifact with date
         run: |
-          echo "Build date: $(date +"%Y-%m-%d %H:%M:%S")" > build-info.txt
+          echo "Build date: $(date '+%Y-%m-%d %H:%M:%S')" > build-info.txt
           echo "Triggered by: ${{ github.actor }}" >> build-info.txt
-
+          
+      - name: Intentional failure - missing dependency
+        run: |
+          curl -s https://api.github.com/repos/kagero900/gt_act_test/actions/runs | jq '.'
+          
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
